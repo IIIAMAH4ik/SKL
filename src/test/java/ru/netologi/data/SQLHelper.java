@@ -20,11 +20,11 @@ public class SQLHelper {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
     }
 
-    public static DataHelper.ValidetionCode getValidetionCode() {
+    public static DataHelper.VerificationCode getVerificationCode() {
         var codeSQL = "SELECT code FROM auth_codes ORDER by created DESC LIMIT 1";
         try (var conn = getConn()) {
             var code = runner.query(conn, codeSQL, new ScalarHandler<String>());
-            return new DataHelper.ValidetionCode(code);
+            return new DataHelper.VerificationCode(code);
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
