@@ -7,6 +7,7 @@ import ru.netologi.data.DataHelper;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 
 public class LoginPage {
     @FindBy(css = "[data-test-id=login] input")
@@ -18,7 +19,7 @@ public class LoginPage {
     @FindBy(css = "[data-test-id='error-notification']")
     private SelenideElement errorNotification;
 
-    public void verifyErrorNotificationVisiblity() {
+    public void verifyErrorNotificationVisibility() {
         errorNotification.shouldBe(visible);
     }
 
@@ -26,7 +27,7 @@ public class LoginPage {
         $("[data-test-id='login'] input").setValue(info.getLogin());
         $("[data-test-id='password'] input").setValue(info.getPassword());
         $("[data-test-id='action-login']").click();
-        return new VerificationPage();
+        return page(VerificationPage.class);
     }
 
 
